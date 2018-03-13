@@ -1,0 +1,325 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="index.css" >
+    <script src = "/socket.io/socket.io.js" > </script>
+    <script>
+      var socket = io();
+    </script>
+
+    <script type=text/javascript src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script> 
+        var socket = io.connect();
+        socket.on('ch', function(channel, direction, action) {
+          switch(channel) {
+            case 1:
+              if (direction==0) {
+                if (action==0) {
+                  document.getElementById("pwr1off").style.fill="gray";
+                } else {
+                  document.getElementById("pwr1off").style.fill="red";
+                }
+              } else {
+                if (action==0) {
+                  document.getElementById("pwr1on").style.fill="gray";
+                } else {
+                  document.getElementById("pwr1on").style.fill="red";
+                }
+              }
+              break;
+            case 2:
+              break;
+          }
+        });
+	socket.on('ledstatus', function(ledNumber,data) {
+	    switch (ledNumber) {
+		case 0:
+	            if (data==1) {
+        	        document.getElementById("r0on").checked=true;
+	                document.getElementById("r0off").checked=false;
+        	        document.getElementById("p_led0").style.color="green";
+	                document.getElementById("p_led0").style.backgroundColor="yellow";
+        	        document.getElementById("indic0").style.fill="lightgreen";
+        	    } else {
+	                document.getElementById("r0on").checked=false;
+        	        document.getElementById("r0off").checked=true;
+	                document.getElementById("p_led0").style.color="black";
+        	        document.getElementById("p_led0").style.backgroundColor="#FFD700";
+	                document.getElementById("indic0").style.fill="green";
+            	    }
+		    break;
+		case 1:
+	            if (data==1) {
+        	        document.getElementById("r1on").checked=true;
+	                document.getElementById("r1off").checked=false;
+        	        document.getElementById("p_led1").style.color="green";
+	                document.getElementById("p_led1").style.backgroundColor="yellow";
+        	        document.getElementById("indic1").style.fill="lightgreen";
+	            } else {
+	                document.getElementById("r1on").checked=false;
+        	        document.getElementById("r1off").checked=true;
+	                document.getElementById("p_led1").style.color="black";
+        	        document.getElementById("p_led1").style.backgroundColor="#FFD700";
+	                document.getElementById("indic1").style.fill="green";
+        	    }
+		    break;
+		case 2:
+	            if (data==1) {
+	                document.getElementById("r2on").checked=true;
+        	        document.getElementById("r2off").checked=false;
+	                document.getElementById("p_led2").style.color="green";
+        	        document.getElementById("p_led2").style.backgroundColor="yellow";
+                	document.getElementById("indic2").style.fill="lightgreen";
+	            } else {
+        	        document.getElementById("r2on").checked=false;
+	                document.getElementById("r2off").checked=true;
+        	        document.getElementById("p_led2").style.color="black";
+	                document.getElementById("p_led2").style.backgroundColor="#FFD700";
+        	        document.getElementById("indic2").style.fill="green";
+	            }
+		    break;
+	    }
+	});
+
+        socket.on('ipaddr', function(data){
+            document.getElementById("ipaddr").innerHTML=data;
+        });
+        socket.on('ipport', function(data){
+            document.getElementById("ipport").innerHTML=data;
+        });
+
+	socket.on('onTime', function(data){
+	    document.getElementById("time1").value=data;
+	});
+	socket.on('offTime', function(data){
+	    document.getElementById("time2").value=data;
+	});
+
+	socket.on('currentTime', function(data){
+	    document.getElementById("currentTime").innerHTML=data;
+	});
+
+	socket.on('keyDates', function(data1,data2){
+	    document.getElementById("keyDates"+data1.toString()).innerHTML=data2;
+	});
+
+        socket.on('an0', function(data){
+            document.getElementById("an0").innerHTML=data.toString();
+            if (data>900){
+                document.getElementById("an0").style.color="red";
+            } else {
+                document.getElementById("an0").style.color="green";
+            }
+            //document.getElementById("meter1").value=data.toString();
+            document.getElementById("meter1").value=parseInt(data);
+            
+        });
+        socket.on('an1', function(data){
+            document.getElementById("an1").innerHTML=data;
+            if (Number(data)>900){
+                document.getElementById("an1").style.color="red";
+            } else {
+                document.getElementById("an1").style.color="green";
+            }
+            document.getElementById("meter2").value=parseInt(data);
+        });
+        socket.on('an2', function(data){
+            document.getElementById("an2").innerHTML=data;
+            if (Number(data)>900){
+                document.getElementById("an2").style.color="red";
+            } else {
+                document.getElementById("an2").style.color="green";
+            }
+            document.getElementById("meter3").value=parseInt(data);
+        });
+        socket.on('an3', function(data){
+            document.getElementById("an3").innerHTML=data;
+            if (Number(data)>900){
+                document.getElementById("an3").style.color="red";
+            } else {
+                document.getElementById("an3").style.color="green";
+            }
+            document.getElementById("meter4").value=parseInt(data);
+        });
+        socket.on('an4', function(data){
+            document.getElementById("an4").innerHTML=data;
+            if (Number(data)>900){
+                document.getElementById("an4").style.color="red";
+            } else {
+                document.getElementById("an4").style.color="green";
+            }
+            document.getElementById("meter5").value=parseInt(data);
+        });
+        socket.on('an5', function(data){
+            document.getElementById("an5").innerHTML=data;
+            if (Number(data)>900){
+                document.getElementById("an5").style.color="red";
+            } else {
+                document.getElementById("an5").style.color="green";
+            }
+            document.getElementById("meter6").value=parseInt(data);
+        });
+        socket.on('an6', function(data){
+            document.getElementById("an6").innerHTML=data;
+            if (Number(data)>900){
+                document.getElementById("an6").style.color="red";
+            } else {
+                document.getElementById("an6").style.color="green";
+            }
+            document.getElementById("meter7").value=parseInt(data);
+        });
+        socket.on('an7', function(data){
+            document.getElementById("an7").innerHTML=data.toString();
+            if (Number(data)>900){
+                document.getElementById("an7").style.color="red";
+            } else {
+                document.getElementById("an7").style.color="green";
+            }
+            document.getElementById("meter8").value=parseInt(data);
+        });
+    </script>
+    
+<<<<<<< HEAD:public/index.html
+    <script>
+        function led0_Off()      {socket.emit('led',0,0);}
+        function led0_On()       {socket.emit('led',0,1);}
+        function led0_toggle()   {socket.emit('led',0,2);}
+
+        function led1_Off()      {socket.emit('led',1,0);}
+        function led1_On()       {socket.emit('led',1,1);}
+        function led1_toggle()   {socket.emit('led',1,2);}
+
+        function led2_Off()      {socket.emit('led',2,0);}
+        function led2_On()       {socket.emit('led',2,1);}
+        function led2_toggle()   {socket.emit('led',2,2);}
+
+        function ch1_on()        {socket.emit('ch',1,1);}
+        function ch1_off()       {socket.emit('ch',1,0);}
+        function ch2_on()        {socket.emit('ch',2,1);}
+        function ch2_off()       {socket.emit('ch',2,0);}
+
+    </script>
+=======
+>>>>>>> f41779b3c0c9b60be712d69cc7045d438ba8742f:index.html
+</head>
+
+<body>
+
+    <div id="container">
+    
+        <div id="header">
+            <text>Welcome to BlackPi</text>
+            <table width="100%">
+            <tr>
+                <th align="left">Raspberry Pi 2 Nixie Clock</th>
+                <th align="left">Raspberry Pi 2</th>
+                <th align="right">Address:Port</th>
+            </tr>
+            <tr>
+                <td align="left"><label id="msg1"></label>you are :</td>
+                <td align="right"><label id="ipaddr"></label>:<label id="ipport"></label></td>
+            </tr>
+            </table>
+        </div>
+
+        <div id="status">
+            <b>status</b><br>
+            <text id="p_led0">LED0</text> <br>
+            <text id="p_led1">LED1</text> <br>
+            <text id="p_led2">LED2</text> <br>
+            <p>
+            <b>analog inputs:</b><br>
+            <FONT FACE="courier">
+            AN0: <label id="an0"></label> <br> <meter id="meter1" x="27" y="20" value="512" min="0" max="1024" low="100" high="900"></meter> <br>
+            AN1: <label id="an1"></label> <br> <meter id="meter2" x="27" y="20" value="512" min="0" max="1024" low="100" high="900"></meter> <br>
+            AN2: <label id="an2"></label> <br> <meter id="meter3" x="27" y="20" value="512" min="0" max="1024" low="100" high="900"></meter> <br>
+            AN3: <label id="an3"></label> <br> <meter id="meter4" x="27" y="20" value="512" min="0" max="1024" low="100" high="900"></meter> <br>
+            AN4: <label id="an4"></label> <br> <meter id="meter5" x="27" y="20" value="512" min="0" max="1024" low="100" high="900"></meter> <br>
+            AN5: <label id="an5"></label> <br> <meter id="meter6" x="27" y="20" value="512" min="0" max="1024" low="100" high="900"></meter> <br>
+            AN6: <label id="an6"></label> <br> <meter id="meter7" x="27" y="20" value="512" min="0" max="1024" low="100" high="900"></meter> <br>
+            AN7: <label id="an7"></label> <br> <meter id="meter8" x="27" y="20" value="512" min="0" max="1024" low="100" high="900"></meter> <br>
+            </FONT>
+            </p>
+        </div>
+
+<<<<<<< HEAD:public/index.html
+        <div id="content">
+            <p padding:20px;>
+            <b>TOGGLE CONTROLS</b><br>
+          
+            LEDs: 
+            <input type="button" name="toggleLed0" id="toggleLed0Button" value="Led0" onClick="led0_toggle();">
+            <input type="button" name="toggleLed1" id="toggleLed1Button" value="Led1" onClick="led1_toggle();">
+            <input type="button" name="toggleLed2" id="toggleLed2Button" value="Led2" onClick="led2_toggle();">
+            <hr />
+
+            <b>ON/OFF CONTROLS</b><br>
+            ON :<INPUT type="radio" name="led0" id="r0on" value="on"   onClick="led0_On(); "> Led0 
+                <INPUT type="radio" name="led1" id="r1on" value="on"   onClick="led1_On(); "> Led1
+                <INPUT type="radio" name="led2" id="r2on" value="on"   onClick="led2_On(); "> Led2<BR>
+            OFF:<INPUT type="radio" name="led0" id="r0off" value="off" onClick="led0_Off();"> Led0
+                <INPUT type="radio" name="led1" id="r1off" value="off" onClick="led1_Off();"> Led1
+                <INPUT type="radio" name="led2" id="r2off" value="off" onClick="led2_Off();"> Led2<BR>
+            <hr />
+
+            <b>TEST</b><br>
+            <svg height="50">
+            <circle id="indic3" cx="30"  cy="25" r="10" fill="gray" stroke="black" stroke-width="4" onClick="led0_toggle()"/>
+            </svg>
+            <hr />
+    
+            <b>LED STATUS PANEL</b><br>
+            <svg height="50">
+            <circle id="indic0" cx="30"  cy="25" r="10" fill="gray" stroke="black" stroke-width="4" onClick="led0_toggle()"/>
+            <circle id="indic1" cx="60"  cy="25" r="10" fill="gray" stroke="black" stroke-width="4" onClick="led1_toggle()"/>
+            <circle id="indic2" cx="90"  cy="25" r="10" fill="gray" stroke="black" stroke-width="4" onClick="led2_toggle()"/>
+            <text x="27"  y="12" fill="black" >0</text>
+            <text x="57"  y="12" fill="black" >1</text>    
+            <text x="87"  y="12" fill="black" >2</text>
+            </svg>
+            <hr />
+
+            <b>AC Power control</b><br>
+            <svg height="50">
+            <circle id="pwr1on"  cx="30"  cy="25" r="10" fill="gray" stroke="black" stroke-width="4" onClick="ch1_on()"/>
+            <circle id="pwr1off" cx="60"  cy="25" r="10" fill="gray" stroke="black" stroke-width="4" onClick="ch1_off()"/>
+            <text x="27"  y="12" fill="black" >on</text>
+            <text x="57"  y="12" fill="black" >off</text>    
+            <hr />
+            </svg>
+
+            </p>
+        </div>
+=======
+	  <FONT FACE="courier">
+	  <PRE>Current time is <label id="currentTime"></label> </PRE>
+	  <PRE>Clock comes on at  :  <input type="time" id="time1" onChange="socket.emit('clockOnOff','on',  value)"> </PRE>
+	  <PRE>Clock goes off at  :  <input type="time" id="time2" onChange="socket.emit('clockOnOff','off', value)"> </PRE>
+	  </FONT>
+
+        <div id="content" style="background-color:#EEEEEE;height:300px;width:390px;float:left;">
+            <p padding:20px;>
+	    important dates:
+            <PRE> <label id="keyDates0"></label></PRE>                        
+            <PRE> <label id="keyDates1"></label></PRE>                        
+            <PRE> <label id="keyDates2"></label></PRE>                        
+            <PRE> <label id="keyDates3"></label></PRE>                        
+            <PRE> <label id="keyDates4"></label></PRE>                        
+            <PRE> <label id="keyDates5"></label></PRE>                        
+            <PRE> <label id="keyDates6"></label></PRE>                        
+            <PRE> <label id="keyDates7"></label></PRE>                        
+            <PRE> <label id="keyDates8"></label></PRE>                        
+>>>>>>> f41779b3c0c9b60be712d69cc7045d438ba8742f:index.html
+        
+
+
+        
+        <div id="footer">
+            Copyright 2015 codeDog
+        </div>
+
+        
+    </div>
+
+ </body>
+
+</html>

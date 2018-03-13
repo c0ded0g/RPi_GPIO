@@ -1,0 +1,85 @@
+/*
+ *  CSS Syntax
+ *  selector { one or more declarations, separated by semicolons }
+ *  declaration = CSS property name + colon + value
+ *  
+ *  see EXAMPLES at end
+ *  
+ */
+body
+{
+    /*background-color: lightblue; */
+    color: blue;
+    background-image: url(image.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: cover;
+}
+
+#header {
+  margin-bottom: 0;
+  text-align: center;
+  background-color:#FFA500; 
+}
+
+#status {
+  float: left;
+  /*width: 100px;*/
+  /*height: 500px;*/
+  padding: 5px;
+  background-color:#FFD700;  
+}
+
+#container {
+  /*width: 500px*/
+}
+
+
+
+#content {
+  /* background-color:#EEEEEE; */
+   /*height: 300px;*/
+   /*width: 390px;*/
+   float: left;
+   background-color:#E1EEEE; 
+}
+
+#footer {
+    background-color: #FFA500;
+    clear:both;
+    text-align:center;
+}
+
+/* 
+  EXAMPLES  
+
+  element selector - all <p> elements:
+    p {
+        text-align:center;
+        color: red;
+    }
+  
+  id selector - element with id="para1"
+    #para1 {
+        text-align:center;
+        color: red;
+    }
+   
+  class selector - all elements with class="center"
+    .center {
+        text-align:center;
+        color: red;
+    } 
+
+  class selector - all <p> elements with class="center"
+    p.center {
+        text-align:center;
+        color: red;
+    } 
+    
+  grouping selector - to save rewriting code
+    h1, h2, p {
+        text-align:center;
+        color: red;
+    }
+ */

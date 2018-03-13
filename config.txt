@@ -1,0 +1,23 @@
+; Nixie Clock Configuration File
+; 
+; comment lines start with semicolon
+; blank lines are ignored
+
+; ON/OFF TIMES
+; ENSURE that a leading zero is used if the hour or minute
+; value is less than 10
+
+ON = 21:38
+OFF = 22:39
+
+; CALENDAR
+; format: DATE = dd,mm,tt
+; where dd = day (1..31), mm=month (1.12), tt=type
+; and allowed types are 1 (xmas), 2 (birthday), 3 ()
+DATE = 26,12,1
+DATE = 1,12,2
+DATE = 23,11,2
+DATE = 10,9,2
+DATE = 22,7,2
+DATE = 9,11,2
+;END
